@@ -38,20 +38,27 @@ export const CartList = () => {
 }
 
 const removeHandler = (details) =>{ 
-  const itemId = details.id;
-  const TarObj = products.filter(pt => pt.id === itemId)[0];
-  const newObj = (TarObj.quantity >= 1) ? {...TarObj, quantity : TarObj.quantity - 1} : {...TarObj, quantity : 0};
-  if(TarObj.quantity >= 1){
+  const itemId = details.id
+  const TarObj = products.filter((pt) => pt.id === itemId)[0]
+
+  if(TarObj.quantity > 1) {
+    const newData = products.map(pt => {
+    if(pt.id === itemId) {
+          const updatedObj = {...pt, quantity : pt.quantity - 1};
+          return updatedObj;
+        }  else {
+          return pt;
+        }
+      
+    })
+    dispatch(ItemsInCart(newData))
     dispatch(ItemsRemoveCount());
   }
-  const newData = products.map(pt =>{
-    if(pt.id === itemId) 
-      return newObj
-    return pt;
-  })
-  dispatch(ItemsInCart(newData))
-
-  console.log(products);
+  if(TarObj.quantity === 1) {
+    const newData = products.filter(pt => pt.id !== itemId)
+    dispatch(ItemsInCart(newData));
+    dispatch(ItemsRemoveCount());
+  }
 
 }
   return (
@@ -63,7 +70,7 @@ const removeHandler = (details) =>{
       <div className='Products'>
         {
           Items.map((details) => {
-            return details.quantity !== 0 && <div key = {details.id} className="Product">
+            return (products.quantity !== 0) ? <div key = {details.id} className="Product">
                 <div className = "cart-product-img">
                    <img src = {details.image} style= {{width: "50%"}}/>
                 </div>
@@ -75,7 +82,7 @@ const removeHandler = (details) =>{
                     <img src = {addIcon} style={{width: "8%"}} onClick={() => cartHandler(details)}/>
                     <img src = {removeIcon} style={{width: "8%"}} onClick={() => removeHandler(details)}/>
                 </div>
-              </div> 
+              </div>  : <img src = {emptyCart} alt = "emptyCart"/>
           })
   
         }

@@ -6,6 +6,7 @@ import { ShoppingList } from './Components/ShoppingList';
 import { Navbar } from './Components/Navbar';
 import { CartList } from './Components/CartList';
 import { Login } from './Auth/Login';
+import { SelectedProduct } from './Components/SelectedProduct';
 
 
 function App() {
@@ -15,7 +16,10 @@ function App() {
       <Navbar/>
        <Routes>
           <Route path = "/" element = {<HomePage />} />
-          <Route path = "/:category"  element = {<ShoppingList />} />
+          <Route path = "/:category"  > 
+             <Route index element = {<ShoppingList />} />
+             <Route path = ":SelectedProduct" element = {<SelectedProduct />} />
+          </Route>
           <Route path = "CartItems" element = {<CartList />} />
        </Routes>
     

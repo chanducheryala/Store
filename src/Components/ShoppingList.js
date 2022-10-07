@@ -8,6 +8,7 @@ import { Update } from '../Api/ApiData'
 import { ItemsCount } from './CartItemsSlice'
 import { ItemsInCart } from './CartItemsSlice'
 import ratingIcon from '../assets/rating.png'
+import { useNavigate } from 'react-router-dom'
 
 export const ShoppingList = () => {
     const { category } = useParams();
@@ -15,6 +16,7 @@ export const ShoppingList = () => {
     const selectedCategory = useSelector(state => state.NavBar.selectedCategory);
     const products = useSelector(state => state.CartItems.cartItems);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(()=> {
         axios.get(`https://fakestoreapi.com/products`)
@@ -62,7 +64,7 @@ export const ShoppingList = () => {
         {
             ShopList && ShopList.map(details =>{
               if(details.category === selectedCategory) 
-              return <div className='Shop-Item' key={details.id}>
+              return <div className='Shop-Item' key={details.id} >
                    <div className='Rating'>
                       <img src = {ratingIcon} alt = "rating-logo" style={{width : "9%"}}/>
                       <h5 >{details.rating.rate}</h5>
