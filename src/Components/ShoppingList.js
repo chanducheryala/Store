@@ -84,6 +84,7 @@ export const ShoppingList = () => {
                   </div>
                  <div className='cart-btn-container'>
                    <button className='cart-btn' onClick={() => cartHandler(details)}>Add to Cart</button>
+                   <button className='cart-btn' onClick={() =>navigate(`${details.id}`)}>view</button>
                 </div>
               </div>
             })

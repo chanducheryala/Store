@@ -70,7 +70,7 @@ const removeHandler = (details) =>{
       <div className='Products'>
         {
           Items.map((details) => {
-            return (products.quantity !== 0) ? <div key = {details.id} className="Product">
+            return (products !== undefined) ? <div key = {details.id} className="Product">
                 <div className = "cart-product-img">
                    <img src = {details.image} style= {{width: "50%"}}/>
                 </div>

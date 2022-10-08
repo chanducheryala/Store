@@ -21,7 +21,7 @@ export const Navbar = () => {
             <Link to = "/Electronics" className='Link'>Electronics</Link>
             <Link to = "/Jewelery" className='Link'>Jewelery</Link>
             <div className='cart-details'>
-                <img src = { cartIcon } alt = "cartIcon" style = {{width : '3rem' , height: "3rem"}} className='carT' onClick={() => navigate("/CartItems")}/>
+                <img src = { cartIcon } alt = "cartIcon" style = {{width : '3.5rem' , height: "3rem"}} className='carT' onClick={() => navigate("/CartItems")}/>
                 <span className='cartlist'>{Cartdetails}</span>
             </div>
             

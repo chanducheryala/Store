@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react';
 import axios from 'axios';
 
@@ -26,8 +26,8 @@ export const SelectedProduct = () => {
              {
                 Product && Product.map((item ) => {
                     return <div className='selected-Product-details'>
-                                <div className='selected-Product-image'>
-                                   <img src = {item.image} alt= "productDetails" style={{width:"15rem", border: '1px solid black', padding:'3rem'}} />
+                                <div className='selected-Product-image' >
+                                   <img src = {item.image} alt= "productDetails" style={{width:"15rem", border: '1px solid lightgray', padding:'3rem', borderRadius:'0.5rem'}} />
                                 </div>
                                 <div className='selected-Product-description'>
                                     <h5>{item.title}</h5>
