@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import addIcon from '../assets/plus.png'
 import removeIcon from '../assets/minus.png'
-import { ItemsCount } from './CartItemsSlice'
-import { ItemsInCart } from './CartItemsSlice'
-import { ItemsRemoveCount } from './CartItemsSlice'
+import { ItemsCount } from '../reducers/CartItemsSlice'
+import { ItemsInCart } from '../reducers/CartItemsSlice'
+import { ItemsRemoveCount } from '../reducers/CartItemsSlice'
 import emptyCart from "../assets/emptyCart.png"
 
 export const CartList = () => {

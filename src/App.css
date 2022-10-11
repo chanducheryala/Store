@@ -20,7 +20,29 @@
   position: relative;
   text-decoration: none;
   color: black;
+  cursor: default;
 }
+
+.User-signOut {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  display: none;
+}
+
+.User-signOut:hover .dropdown {
+  display: block;
+}
+.signOut-btn {
+   border : 1px solid lightgray;
+   padding: 0.6rem;
+   background-color: #fff;
+   border-radius: 0.5rem;
+
+}
+
 
 .Link:hover::after{
   position: absolute;
@@ -111,7 +133,7 @@
    margin-left: 3rem;
 }
 
-.Login {
+/* .Login {
   box-sizing: border-box;
   background-color: #fff;
   width: 40vw;
@@ -122,10 +144,38 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: 2rem;
+  position: fixed;
   padding: 3.3rem;
   border-radius: 0.5rem;
-  position: fixed;
   font-family: 'Roboto';
+  background-image: url("../src/assets/bgpic.jpg");
+  background-size : contain;
+} */
+
+.Background-Image {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+
+}
+.Login-details-container, .signUp-details-container{
+  position: absolute;
+  top: 14rem;
+  left: 28rem;
+  height: 23rem;
+  border: 1px solid lightgray;
+  width : 35rem;
+  padding: 3rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap : 1.5rem;
+  outline: none;
+  background-color: lightgray;
+  opacity: 0.8;
 }
 
 .text-fields {
@@ -152,7 +202,7 @@
   border: thin solid lightgrey;
 }
 
-.Login-btn {
+.Login-btn , .signUp-btn{
   display: flex;
   height: 2.5rem;
   width : 15rem;
