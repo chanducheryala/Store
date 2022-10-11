@@ -25,12 +25,12 @@ export const SelectedProduct = () => {
         <div>
              {
                 Product && Product.map((item ) => {
-                    return <div className='selected-Product-details'>
+                    return <div className='selected-Product-details' key = {item.id}>
                                 <div className='selected-Product-image' >
                                    <img src = {item.image} alt= "productDetails" style={{width:"15rem", border: '1px solid lightgray', padding:'3rem', borderRadius:'0.5rem'}} />
                                 </div>
                                 <div className='selected-Product-description'>
-                                    <h5>{item.title}</h5>
+                                    <h3>{item.title}</h3>
                                     <h5>{item.description}</h5>
                                 </div>
                            </div>

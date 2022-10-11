@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import bgImage from '../assets/bgpic.jpg'
 import { auth } from '../firebase-config'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-
+import {
+   createUserWithEmailAndPassword,
+   onAuthStateChanged 
+  } from 'firebase/auth'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 export const SignUp = () => {
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
    const [user, setUser ] = useState(
      {
         username : "",
@@ -13,13 +18,15 @@ export const SignUp = () => {
         password : ""
      }
    )
+
+
     const signUpHandler = async() => {
        const owner = await createUserWithEmailAndPassword(
         auth,
         user.email,
         user.password
        )
-       console.log(owner);
+       navigate("/");
     }
   return (
     <div className='Signup'>

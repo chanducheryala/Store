@@ -1,14 +1,14 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import storeLogo from '../assets/StoreLogo.png'
 import cartIcon from '../assets/shopping-cart.png'
 import { useNavigate } from 'react-router-dom'
 import user from '../assets/Owner.png';
-import { signOut } from 'firebase/auth'
 import { auth } from '../firebase-config'
 import { utils } from './utils'
 import { changeCategory } from '../reducers/NavbarSlice'
+import { signInWithEmailAndPassword ,onAuthStateChanged, signOut} from 'firebase/auth'
+import {loginStatus, userEmail, userPassword} from '../reducers/loginSlice' 
 
 
 
@@ -17,8 +17,10 @@ export const Navbar = () => {
     const navigate = useNavigate();
     const Cartdetails = useSelector(state => state.CartItems.addedCart);
 
-    const signOutHandler = () => {
-      signOut(auth);
+    const signOutHandler = async() => {
+       await signOut(auth);
+       dispatch(loginStatus(false))
+       navigate("/");
     }
    return (
     <nav className='Navbar'>
@@ -29,7 +31,7 @@ export const Navbar = () => {
         <div className='Nav-items'>
             {
                 utils.map(item => {
-                    return <div className='Link' onClick={() => {
+                    return <div key = {item.id} className='Link' onClick={() => {
                           dispatch(changeCategory(item.category));
                           navigate(`/${item.name}`)
    
@@ -43,7 +45,7 @@ export const Navbar = () => {
                 <span className='cartlist'>{Cartdetails}</span>
             </div>
          <div style={ { width : '10%'}} className="User-signOut">
-            <img src = { user } alt = "user"  style={ { width : '80%' }}  className = "UserPIC"/>
+            <img src = { user } alt = "user"  style={ {width : '3.5rem' , height: "3rem"}}  className = "UserPIC"/>
             <div className='dropdown'>
                 <button className='signOut-btn' onClick={signOutHandler}>Sign Out</button>
             </div>
@@ -53,9 +55,3 @@ export const Navbar = () => {
     </nav>
   )
 }
-
-
-{/* <Link to = "/MensClothing" className='Link'>Mens Clothing</Link>
-            <Link to = "/WomensClothing" className='Link'>Womens Clothing</Link>
-            <Link to = "/Electronics" className='Link'>Electronics</Link>
-            <Link to = "/Jewelery" className='Link'>Jewelery</Link> */}

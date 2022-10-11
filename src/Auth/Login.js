@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React from 'react'
+import { useState , useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import bgImage from '../assets/bgpic.jpg'
-import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../firebase-config' 
-import { userCredientails } from '../reducers/loginSlice'
+import { auth } from '../firebase-config'
+import {loginStatus, userEmail, userPassword} from '../reducers/loginSlice' 
+import { signInWithEmailAndPassword ,onAuthStateChanged} from 'firebase/auth'
 import { useDispatch , useSelector } from 'react-redux'
-export const Login = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const userDetails = useSelector(state => state.Login.userEmail);
 
+export const Login = () => {
+
+  const userDetails = useSelector(state => state.Login.userEmail);
+  const navigate = useNavigate();
+  const dispatch = useDispatch(); 
+  const [error , setError] = useState(null);
   const [user, setUser ] = useState(
     {
        email : "",
@@ -18,17 +20,29 @@ export const Login = () => {
     }
   )
 
-  const loginHandler = () => {
-      
+  const loginHandler = async() => {
+    try {
+      await signInWithEmailAndPassword(
+        auth,
+        user.email,
+        user.password) 
+    }
+    catch(err)  {
+       setError("No User Found ! Create New Account");
+    }
+
+     dispatch(userEmail(user.email));
+     dispatch(userPassword(user.password));
+     dispatch(loginStatus(true)) 
   }
-    
+  
   return (
     <div className='Login'>
         <div >
           <img src = {bgImage} alt = "BGImg"  className='Background-Image'/>
         </div>
         <div className='Login-details-container'>
-         
+          {error &&  <h4 className = "error-message">{error}</h4>}
           <div className='text-fields'>
               <label className='Label-name'>Email</label>
               <input type = "email" 
@@ -47,8 +61,10 @@ export const Login = () => {
           </div> 
           <div className='Extra-details'>
               <button className='Login-btn' onClick={loginHandler}>Login In</button>
-              <span className='FPass'>Forgot Password</span>
-              <span className='nacc' onClick = {()=> navigate("SignUp")}>create new account</span>
+              <div className = "user_help" >
+                  <span className='FPass'>Forgot Password</span>
+                  <span className='nacc' onClick = {()=> navigate("SignUp")}>create new account</span>
+              </div>
           </div>
         </div>
     </div>

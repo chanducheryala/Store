@@ -7,7 +7,7 @@ import removeIcon from '../assets/minus.png'
 import { ItemsCount } from '../reducers/CartItemsSlice'
 import { ItemsInCart } from '../reducers/CartItemsSlice'
 import { ItemsRemoveCount } from '../reducers/CartItemsSlice'
-import emptyCart from "../assets/emptyCart.png"
+
 
 export const CartList = () => {
   const Items = useSelector(state => state.CartItems.cartItems);
@@ -70,19 +70,19 @@ const removeHandler = (details) =>{
       <div className='Products'>
         {
           Items.map((details) => {
-            return (products !== undefined) ? <div key = {details.id} className="Product">
+            return <div key = {details.id} className="Product">
                 <div className = "cart-product-img">
-                   <img src = {details.image} style= {{width: "50%"}}/>
+                   <img src = {details.image} style= {{width : '6rem', paddingLeft: '1rem' }}/>
                 </div>
                 <div className='product-details'>
                   <span >{details.title}</span>
                   <span >{details.quantity}</span>
                 </div>
                 <div className='add-remove-icons'>
-                    <img src = {addIcon} style={{width: "8%"}} onClick={() => cartHandler(details)}/>
-                    <img src = {removeIcon} style={{width: "8%"}} onClick={() => removeHandler(details)}/>
+                    <img src = {addIcon} style={{width: "2rem"}} onClick={() => cartHandler(details)}/>
+                    <img src = {removeIcon} style={{width: "2rem"}} onClick={() => removeHandler(details)}/>
                 </div>
-              </div>  : <img src = {emptyCart} alt = "emptyCart"/>
+              </div> 
           })
   
         }
