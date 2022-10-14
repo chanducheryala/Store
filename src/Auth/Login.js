@@ -30,7 +30,6 @@ export const Login = () => {
     catch(err)  {
        setError("No User Found ! Create New Account");
     }
-
      dispatch(userEmail(user.email));
      dispatch(userPassword(user.password));
      dispatch(loginStatus(true)) 
@@ -62,7 +61,7 @@ export const Login = () => {
           <div className='Extra-details'>
               <button className='Login-btn' onClick={loginHandler}>Login In</button>
               <div className = "user_help" >
-                  <span className='FPass'>Forgot Password</span>
+                  <span className='FPass' onClick={() => navigate("/forgotPassword")}>Forgot Password</span>
                   <span className='nacc' onClick = {()=> navigate("SignUp")}>create new account</span>
               </div>
           </div>

@@ -1,8 +1,23 @@
-import React from 'react'
+import { boxSizing } from '@mui/system'
+import React, { useEffect } from 'react'
 import messi from '../assets/messi.png'
+import { useSelector } from 'react-redux'
+
 export const HomePage = () => {
+const emailId = useSelector(state => state.Login.user.email);
+
+   const Modal = () => {
+     setTimeout(() => {
+      const content = document.getElementById('modal')
+       return content.style.display = "none";
+    },1000)
+   }
   return (
     <div className='Home-page'>
+       <div id='modal'>
+            <h1 >Hello {emailId}</h1>
+        </div>
+        { Modal() }
         <div className='store-info'>
             <p>
                 The Messi Green collection promotes the reuse of waste by re-designing deadstock (recycled) fabrics, assuming that waste is a design error and promoting the circular economy, in which, like nature, nothing is left, everything is reused.
