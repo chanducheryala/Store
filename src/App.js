@@ -14,7 +14,9 @@ import { onAuthStateChanged } from 'firebase/auth'
 import  { auth } from './firebase-config' 
 import { ForgotPassword } from './Auth/ForgotPassword';
 import { DisplayComponent } from './Components/DisplayComponent';
-import { SkeletonComponent } from './Components/SkeletonComponent';
+import { ProgressBar } from 'primereact/progressbar';
+import { SkeletonRender } from './Components/SkeletonRender';
+
 
 
 const App = () => {
@@ -35,12 +37,12 @@ const App = () => {
         setLoading(false);
         
         })
-   }, 0)
+   }, 3000)
    
   }, [])
 
  return (
-  loading ? <SkeletonComponent /> :
+  loading ? <SkeletonRender />:
      <div className="App">
         {  Owner && <Navbar/>  }
      <Routes>

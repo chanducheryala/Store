@@ -3,6 +3,7 @@ import { Navigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react';
 import axios from 'axios';
 
+
 export const SelectedProduct = () => {
 
     const { SelectedProduct } = useParams();

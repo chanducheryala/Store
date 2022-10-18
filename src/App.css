@@ -323,8 +323,8 @@
 }
 
 .cart-Items {
-  top : 5rem;
-  margin: 5rem;
+ 
+  margin: 4rem;
   min-height: 100vmin;
   background-color:  #fff;
   display: flex;
@@ -458,9 +458,83 @@
   } 
 }
 
+
+.skeleton {
+  height: 10rem;
+  width : 100%;
+  background-color:#eee;
+  border-radius: 0.5rem;
+  animation-name : skeleton-loading;
+  animation-iteration-count: infinite;
+  animation-duration: 1s ;
+  
+}
+.skeleton::before {
+  content: " ";
+  position: absolute;
+  background: linear-gradient(to right, transparent,  rgba(255, 255, 255, 0.9), transparent );
+  height: 100%;
+  width : 50%;
+
+}
+
+.skeleton-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap : 2rem;
+  padding: 2rem;
+  position: relative;
+}
+
+@keyframes skeleton-loading {
+ 
+  100%{
+    transform:  translateX(150%);
+  }
+}
+
+.backButton {
+  color: white;
+}
+
+
+/* 
+@keyframes skeleton-div{
+  0%{
+    background-color: rgb(255, 255, 255);
+  }
+  25%{
+    background-color: rgb(245, 242, 242);
+  }
+  50%{
+   
+    background-color: rgb(255, 255, 255);
+  }
+  75%{
+    background-color: rgb(245, 242, 242);
+  }
+  100% {
+    background-color: rgb(255, 255, 255);
+  }
+}  */
+
+/* 
+.skeleton {
+  height: 10rem;
+  width : 100%;
+  background-color: white;
+  border-radius: 0.5rem;
+  animation-name: skeleton-div;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: liner;
+  animation-direction: normal;
+}
+
 .skeleton-container {
   display: flex;
   flex-direction: column;
-  gap : 4rem;
-}
-
+  gap : 2rem;
+  padding: 2rem;
+} */

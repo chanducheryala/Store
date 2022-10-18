@@ -7,6 +7,7 @@ import removeIcon from '../assets/minus.png'
 import { ItemsCount } from '../reducers/CartItemsSlice'
 import { ItemsInCart } from '../reducers/CartItemsSlice'
 import { ItemsRemoveCount } from '../reducers/CartItemsSlice'
+import { BackButton } from '../utils/BackButton'
 
 
 export const CartList = () => {
@@ -62,31 +63,34 @@ const removeHandler = (details) =>{
 
 }
   return (
-    <div className='cart-Items'>
-      <div className='cartList-header'>
-        <h1>Cart Items</h1>
-        <img src = { Cancel } alt = "cancel" className='cancel-Icon' onClick={() => navigate(-1)}/>
-      </div>
-      <div className='Products'>
-        {
-          Items.map((details) => {
-            return <div key = {details.id} className="Product">
-                <div className = "cart-product-img">
-                   <img src = {details.image} style= {{width : '6rem', paddingLeft: '1rem' }}/>
-                </div>
-                <div className='product-details'>
-                  <span >{details.title}</span>
-                  <span >{details.quantity}</span>
-                </div>
-                <div className='add-remove-icons'>
-                    <img src = {addIcon} style={{width: "2rem"}} onClick={() => cartHandler(details)}/>
-                    <img src = {removeIcon} style={{width: "2rem"}} onClick={() => removeHandler(details)}/>
-                </div>
-              </div> 
-          })
-  
-        }
-      </div>
+    <div>
+      <BackButton />
+      <div className='cart-Items'>  
+            <div className='cartList-header'>
+              <h1>Cart Items</h1>
+              <img src = { Cancel } alt = "cancel" className='cancel-Icon' onClick={() => navigate(-1)}/>
+            </div>
+            <div className='Products'>
+              {
+                Items.map((details) => {
+                  return <div key = {details.id} className="Product">
+                      <div className = "cart-product-img">
+                        <img src = {details.image} style= {{width : '6rem', paddingLeft: '1rem' }}/>
+                      </div>
+                      <div className='product-details'>
+                        <span >{details.title}</span>
+                        <span >{details.quantity}</span>
+                      </div>
+                      <div className='add-remove-icons'>
+                          <img src = {addIcon} style={{width: "2rem"}} onClick={() => cartHandler(details)}/>
+                          <img src = {removeIcon} style={{width: "2rem"}} onClick={() => removeHandler(details)}/>
+                      </div>
+                    </div> 
+                })
+        
+              }
+            </div>
+          </div>
     </div>
   )
 }

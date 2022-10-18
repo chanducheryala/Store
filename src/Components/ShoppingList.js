@@ -9,7 +9,8 @@ import { ItemsCount } from '../reducers/CartItemsSlice'
 import { ItemsInCart } from '../reducers/CartItemsSlice'
 import ratingIcon from '../assets/rating.png'
 import { useNavigate } from 'react-router-dom'
-import { utils } from './utils'
+import { utils } from '../utils/utils'
+import { BackButton } from '../utils/BackButton'
 
 export const ShoppingList = () => {
     const { category } = useParams();
@@ -51,7 +52,9 @@ export const ShoppingList = () => {
         }
     }
   return (
-    <div className='Shop-List'>
+   <div>
+       <BackButton />
+       <div className='Shop-List'>
         {
             ShopList && ShopList.map(details =>{
               if(details.category === CategorySelected) 
@@ -81,6 +84,7 @@ export const ShoppingList = () => {
             })
         }
     </div>
+   </div>
   )
 }
 

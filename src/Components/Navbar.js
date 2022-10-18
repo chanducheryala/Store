@@ -5,7 +5,7 @@ import cartIcon from '../assets/shopping-cart.png'
 import { useNavigate } from 'react-router-dom'
 import user from '../assets/Owner.png';
 import { auth } from '../firebase-config'
-import { utils } from './utils'
+import { utils } from '../utils/utils'
 import { changeCategory } from '../reducers/NavbarSlice'
 import { signInWithEmailAndPassword ,onAuthStateChanged, signOut} from 'firebase/auth'
 import {loginStatus, userEmail, userPassword} from '../reducers/loginSlice' 
