@@ -25,7 +25,7 @@ export const Navbar = () => {
    return (
     <nav className='Navbar'>
         <div className='Store-details'>
-            <img src = {storeLogo} alt = "storeLogo" style={{width: "10%"}}/>
+            <img src = {storeLogo} alt = "storeLogo" style={{width: "10%"}} onClick = {() => navigate("/")}/>
             <span>Messi Store</span>
         </div>
         <div className='Nav-items'>

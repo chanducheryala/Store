@@ -25,11 +25,17 @@ export const ShoppingList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const[searchedText, setSearchedText ] = useState("");
-    const [actualData, setActualData] = useState([...ShopList]);
     const [showModal , setShowModal] = useState(false);
     const [modalMessage , setModalMessage] = useState(" ");
-    let resetData = [...actualData];
+    const [actualData, setActualData] = useState([...ShopList]);
+    let LOCAL_STORAGE_KEY = "Products";
 
+
+    useEffect(() => {
+      const lSData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
+       setActualData(lSData);
+    }, [])
+    
     useEffect(()=> {
         axios.get(`https://fakestoreapi.com/products`)
         .then(resp => resp.data)
@@ -41,10 +47,9 @@ export const ShoppingList = () => {
           dispatch(Update(newData));
           setActualData(newData)
           console.log(actualData)
+          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(actualData));
         })
-        .catch(err => console.log(err.staus))
-
-        
+        .catch(err => console.log(err.staus))  
     },[category])
   
     const cartHandler = (details) => {
@@ -59,17 +64,15 @@ export const ShoppingList = () => {
               return updatedObj;
             return pt;
           })
-
           dispatch(ItemsInCart(updatedData));
           console.log(products);
-
         } else {
            const obj = [...products, {...details, quantity : 1}];
-           dispatch(ItemsInCart(obj));
-         
+           dispatch(ItemsInCart(obj)); 
         }
         setModalMessage(details.title);
     }
+ 
 
     const filter = (filterType) => {
       let newData = [...ShopList];
@@ -78,7 +81,6 @@ export const ShoppingList = () => {
         setActualData(newData);
       } else if(filterType === 2 ) {
           newData = newData.sort((item1, item2) => { return item1.price - item2.price})
-        
           setActualData(newData);
       }
       else if(filterType === 3){
