@@ -500,45 +500,6 @@
 }
 
 
-/* 
-@keyframes skeleton-div{
-  0%{
-    background-color: rgb(255, 255, 255);
-  }
-  25%{
-    background-color: rgb(245, 242, 242);
-  }
-  50%{
-   
-    background-color: rgb(255, 255, 255);
-  }
-  75%{
-    background-color: rgb(245, 242, 242);
-  }
-  100% {
-    background-color: rgb(255, 255, 255);
-  }
-}  */
-
-/* 
-.skeleton {
-  height: 10rem;
-  width : 100%;
-  background-color: white;
-  border-radius: 0.5rem;
-  animation-name: skeleton-div;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-timing-function: liner;
-  animation-direction: normal;
-}
-
-.skeleton-container {
-  display: flex;
-  flex-direction: column;
-  gap : 2rem;
-  padding: 2rem;
-} */
 
 .dropdown-items {
   display: flex;
@@ -573,4 +534,30 @@
   display: flex;
   justify-content: space-between;
   margin-top: 8rem;
+}
+
+.cartAddModal {
+  height : 5rem;
+  width : 30rem;
+  margin-top: 30rem;
+  border: 1px  rgb(70, 66, 66) solid;
+  position: fixed;
+  z-index: 100000;
+  top : -22rem;
+  right: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+  border-left: 8px solid rgb(128, 128, 167);
+  display: flex;
+  align-items: center;
+  gap : 1rem;
+}
+
+.shopList-container {
+  position: relative;
+}
+.checkmark {
+  width: 4rem;
 }

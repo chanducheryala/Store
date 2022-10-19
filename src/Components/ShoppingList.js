@@ -14,6 +14,7 @@ import { BackButton } from '../utils/BackButton'
 import { Dropdown } from '../utils/Dropdown'
 import { SearchBar } from '../Components/SearchBar'
 import searchIcon from '../assets/search.svg'
+import { AddModal } from './AddModal'
 
 
 export const ShoppingList = () => {
@@ -24,20 +25,31 @@ export const ShoppingList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const[searchedText, setSearchedText ] = useState("");
-    
+    const [actualData, setActualData] = useState([...ShopList]);
+    const [showModal , setShowModal] = useState(false);
+    const [modalMessage , setModalMessage] = useState(" ");
+    let resetData = [...actualData];
 
     useEffect(()=> {
         axios.get(`https://fakestoreapi.com/products`)
         .then(resp => resp.data)
         .then(resp => {
-          dispatch(Update(resp));
+          const newData = resp.filter(item => {
+            if(item.category === CategorySelected)
+              return item;
+          })
+          dispatch(Update(newData));
+          setActualData(newData)
+          console.log(actualData)
         })
         .catch(err => console.log(err.staus))
+
         
     },[category])
   
     const cartHandler = (details) => {
         dispatch(ItemsCount());
+        setShowModal(true);
         const itemId = details.id;
         if(products.some(pt => pt['id'] === itemId)) {
           const TarObj = products.filter(pt => pt.id === itemId)[0];
@@ -56,21 +68,27 @@ export const ShoppingList = () => {
            dispatch(ItemsInCart(obj));
          
         }
+        setModalMessage(details.title);
     }
 
     const filter = (filterType) => {
       let newData = [...ShopList];
       if(filterType === 1 ) {
         newData = newData.sort((item1, item2) => { return item2.price - item1.price})
-        dispatch(Update(newData));
+        setActualData(newData);
       } else if(filterType === 2 ) {
           newData = newData.sort((item1, item2) => { return item1.price - item2.price})
-          dispatch(Update(newData));
+        
+          setActualData(newData);
       }
-      else {
+      else if(filterType === 3){
           newData = newData.sort((item1, item2) => { return item2.rating.rate - item1.rating.rate})
-          dispatch(Update(newData));
-        }
+          setActualData(newData);
+        } 
+      else {
+        setActualData(ShopList);
+      }
+
     }
 
     useEffect(() => {
@@ -78,13 +96,14 @@ export const ShoppingList = () => {
           const newItem = item.title.toLowerCase();
           if(newItem.includes(searchedText)) 
             {
-              return item;}
+              return item;
+            }
          }) 
-         dispatch(Update(newData));
+        setActualData(newData);
     }, [searchedText])
 
   return (
-   <div>
+   <div className='shopList-container'>
       <div className = "shoplist-header">
         <BackButton />
         <SearchBar 
@@ -95,10 +114,11 @@ export const ShoppingList = () => {
          onChange = {(e) => setSearchedText(e.target.value)}
          />
         <Dropdown filter = {filter}/>
+         {showModal  && <AddModal  message = { modalMessage } time = { 2000 } isDisplay = { setShowModal }/>}
       </div>
        <div className='Shop-List'>
         {
-            ShopList && ShopList.map(details =>{
+            actualData && actualData.map(details =>{
               if(details.category === CategorySelected) 
               return <div className='Shop-Item' key={details.id} >
                    <div className='Rating'>
@@ -119,7 +139,7 @@ export const ShoppingList = () => {
                       <h6 style={{color :'orange'}}>{`(50% OFF)`}</h6>
                   </div>
                  <div className='cart-btn-container'>
-                   <button className='cart-btn' onClick={() => cartHandler(details)}>Add to Cart</button>
+                   <button className='cart-btn' onClick={() => { cartHandler(details) }}>Add to Cart</button>
                    <button className='cart-btn' onClick={() =>navigate(`${details.id}`)}>view</button>
                 </div>
               </div>

@@ -11,5 +11,9 @@ export const dropdownItems =  [
     {
       id : 3,
       name : "rating",
+    },
+    {
+       id : 4,
+       name : "reset"
     }
   ]

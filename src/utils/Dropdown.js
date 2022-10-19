@@ -23,7 +23,8 @@ export const Dropdown = ({filter}) => {
            <div className='dropdown-items'>
               {
               dropdownItems.map(item => {
-                return <span  className = "dropdown-item" key = {item.id} onClick={() => (filter(item.id) ,setSelectedFiler(item.name))}> 
+                return <span  className = "dropdown-item" key = {item.id} onClick={() => (filter(item.id) ,
+                item.name !== "reset" ? setSelectedFiler(item.name) : setSelectedFiler(" ") )}> 
                             <span> {item.name}</span>
                         </span>
               })}

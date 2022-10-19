@@ -37,7 +37,7 @@ const App = () => {
         setLoading(false);
         
         })
-   }, 0)
+   }, 2000)
    
   }, [])
 
