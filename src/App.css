@@ -249,6 +249,7 @@
   padding: 3rem;
   column-gap: 2rem;
   row-gap: 2rem;
+  position: relative;
 }
 .Shop-Item {
   background-color: #fff;
@@ -538,3 +539,38 @@
   gap : 2rem;
   padding: 2rem;
 } */
+
+.dropdown-items {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  background-color: white;
+  width : 10rem;
+  border: 0.3px solid gray ;
+  border-radius: 0.5rem;
+}
+
+
+.dropdown-item {
+  box-sizing: border-box;
+  cursor: default;
+  width: 100%;
+  margin-bottom: 0.3rem;
+  padding: 0.4rem;
+  border-radius: 0.5rem;
+}
+
+.dropdown-item:hover {
+  box-sizing: border-box;
+  cursor: default;
+  background-color: #eee;
+  width: 100%;
+  margin-bottom: 0.3rem;
+  padding: 0.4rem;
+}
+
+.shoplist-header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8rem;
+}
