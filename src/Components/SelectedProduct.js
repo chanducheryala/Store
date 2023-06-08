@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react';
 import axios from 'axios';
+import { BackButton } from '../utils/BackButton';
 
 
 export const SelectedProduct = () => {
@@ -23,6 +24,13 @@ export const SelectedProduct = () => {
 
   return (
     <div className='selected-Product'>
+      <div style = {{
+         position: "absolute",
+         left: "1rem",
+         top: "1rem"
+      }}>
+          <BackButton />
+      </div>
         <div>
              {
                 Product && Product.map((item ) => {

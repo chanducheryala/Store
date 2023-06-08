@@ -6,7 +6,7 @@ export const BackButton = () => {
     const navigate = useNavigate();
   return (
     <>
-        <img src= { BB } alt = "backButton" style = {{width : '3rem', marginLeft:"1rem"}}  className = "backButton" onClick = {() =>  navigate(-1)}/>
+        <img src= { BB } alt = "backButton" style = {{width : '3rem', marginLeft:"1rem", cursor: "pointer"}}  className = "backButton" onClick = {() =>  navigate(-1)}/>
      </>
   )
 }

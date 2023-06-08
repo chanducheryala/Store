@@ -24,7 +24,7 @@ export const Dropdown = ({filter}) => {
               {
               dropdownItems.map(item => {
                 return <span  className = "dropdown-item" key = {item.id} onClick={() => (filter(item.id) ,
-                item.name !== "reset" ? setSelectedFiler(item.name) : setSelectedFiler(" ") )}> 
+                item.name !== "reset" ? setSelectedFiler(item.name) : setSelectedFiler(" "),clickHandler())}> 
                             <span> {item.name}</span>
                         </span>
               })}
@@ -33,3 +33,30 @@ export const Dropdown = ({filter}) => {
     </div>
   )
 }
+
+
+// import React from 'react'
+// import Dropdown from 'antd/es/dropdown/dropdown'
+// import { Button } from 'antd'
+// import { dropdownItems } from './DropdownItems'
+
+
+// export const CustomDropdown = () => {
+//   return (
+//     <>
+//      <Dropdown
+//       menu={{
+//          dropdownItems,
+//       }}
+//       placement="bottom"
+//       arrow={{
+//         pointAtCenter: true,
+//       }}
+//     >
+//       <Button>bottom</Button>
+//     </Dropdown>
+//     </>
+//   )
+// }
+
+

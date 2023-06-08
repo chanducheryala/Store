@@ -11,7 +11,7 @@ import ratingIcon from '../assets/rating.png'
 import { useNavigate } from 'react-router-dom'
 import { utils } from '../utils/utils'
 import { BackButton } from '../utils/BackButton'
-import { Dropdown } from '../utils/Dropdown'
+import { Dropdown } from '../utils/CustomDropdown'
 import { SearchBar } from '../Components/SearchBar'
 import searchIcon from '../assets/search.svg'
 import { AddModal } from './AddModal'
@@ -65,7 +65,6 @@ export const ShoppingList = () => {
             return pt;
           })
           dispatch(ItemsInCart(updatedData));
-          console.log(products);
         } else {
            const obj = [...products, {...details, quantity : 1}];
            dispatch(ItemsInCart(obj)); 

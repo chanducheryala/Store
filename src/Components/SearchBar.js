@@ -26,9 +26,9 @@ export const SearchBar = ({
             paddingRight: '2rem',
             fontSize :'1rem',
             outline :"none",
-            border:"0.5px solid black",
             borderRadius: "0.5rem",
             paddingLeft: '0.5rem',
+            border: "none"
             }}
           
       />

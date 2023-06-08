@@ -28,9 +28,7 @@ export const CartList = () => {
         return pt;
       })
 
-      dispatch(ItemsInCart(updatedData));
-      console.log(products);
-
+      dispatch(ItemsInCart(updatedData));       
     } else {
        const obj = [...products, details];
        dispatch(ItemsInCart(obj));
@@ -64,9 +62,14 @@ const removeHandler = (details) =>{
 }
   return (
     <div>
-      <BackButton />
       <div className='cart-Items'>  
             <div className='cartList-header'>
+           <div style = {{
+             position: "absolute",
+             left: "0"
+           }}>
+           <BackButton />
+           </div>
               <h1>Cart Items</h1>
               <img src = { Cancel } alt = "cancel" className='cancel-Icon' onClick={() => navigate(-1)}/>
             </div>
@@ -82,8 +85,8 @@ const removeHandler = (details) =>{
                         <span >{details.quantity}</span>
                       </div>
                       <div className='add-remove-icons'>
-                          <img src = {addIcon} style={{width: "2rem"}} onClick={() => cartHandler(details)}/>
-                          <img src = {removeIcon} style={{width: "2rem"}} onClick={() => removeHandler(details)}/>
+                          <img src = {addIcon} style={{width: "2rem", cursor:"pointer"}} onClick={() => cartHandler(details)}/>
+                          <img src = {removeIcon} style={{width: "2rem", cursor: "pointer"}} onClick={() => removeHandler(details)}/>
                       </div>
                     </div> 
                 })

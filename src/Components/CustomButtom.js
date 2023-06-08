@@ -17,7 +17,8 @@ export const CustomButton = ({
       backgroundColor : "white",
       border : "0.3px solid gray",
       position : "relative",
-      borderRadius: "0.5rem"
+      borderRadius: "0.5rem",
+      border: "1px solid #efefef"
       }}
     >
       {children}
